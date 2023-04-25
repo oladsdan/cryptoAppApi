@@ -1,3 +1,33 @@
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query';
+
+const cryptoApiHeaders = {
+    'content-type': 'application/octet-stream',
+    'X-RapidAPI-Key': '7904ddccf4msh1d487968a36450dp12492fjsnb4a82e52fa1c',
+    'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com'
+
+}
+
+const baseUrl = 'https://coinranking1.p.rapidapi.com';
+
+// a utility function that adds the headers to the url
+const createRequest = (url) => ({ url, headers: cryptoApiHeaders})
+
+export const cryptoApi = createApi({
+    reducerPath: 'cryptoApi',
+    baseQuery: fetchBaseQuery({ baseUrl}),
+    endpoints: (builder) => ({
+        getCryptos : builder.query({
+            query: () => createRequest('/coins')
+        })
+    })
+});
+
+export const {
+    useGetCryptosQuery,
+
+} = cryptoApi;
+
+
 // import axios from 'axios';
 
 // const options = {
