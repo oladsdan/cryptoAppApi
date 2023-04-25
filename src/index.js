@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'; // this is going to be a provider for th
 import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
 import 'antd/dist/antd';
-import store from './app/store';
+import { store } from './app/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
