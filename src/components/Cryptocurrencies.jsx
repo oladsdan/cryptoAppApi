@@ -10,13 +10,14 @@ const Cryptocurrencies = ({simplified}) => {
 
   //destruction of the getcyptoquery
   const { data: cryptosList, isFetching } = useGetCryptosQuery(count);
-  const [cryptos, setCryptos] = useState(cryptosList?.data?.coins);
+  const [cryptos, setCryptos] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    setCryptos(cryptosList?.data?.coins);
 
-    const filteredData = cryptosList?.data?.coins.filter((coin)=>coin.name.toLowerCase().includes(searchTerm.toLowerCase()))
+    const filteredData = cryptosList?.data?.coins.filter((coin)=>coin.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    
+    setCryptos(filteredData)
 
   },[cryptosList, searchTerm]) // this will execute when both changes
 
@@ -26,10 +27,12 @@ const Cryptocurrencies = ({simplified}) => {
   return (
     <>
       {/* creating a search item */}
-      <div className="search-crypto">
-        <input placeholder="Search Cryptocurrency" onChange={(e) => setSearchTerm(e.target.value)} />
-
-      </div>
+      {!simplified && (
+        // this ensures that the search does not show on the homepage
+        <div className="search-crypto">
+          <input placeholder="Search Cryptocurrency" onChange={(e) => setSearchTerm(e.target.value)} style={{height: "40px"}} />
+        </div>
+      )}
       <Row gutter={[32, 32]} className="crypto-card-container">
         {cryptos?.map((currency)=> (
           <Col xs={24} sm={12} lg={6} className='crypto-card' key={currency.id}>
