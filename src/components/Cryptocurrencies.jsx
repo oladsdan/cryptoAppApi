@@ -10,7 +10,6 @@ const Cryptocurrencies = ({simplified}) => {
 
   //destruction of the getcyptoquery
   const { data: cryptosList, isFetching } = useGetCryptosQuery(count);
-  console.log(cryptosList)
   const [cryptos, setCryptos] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
 
