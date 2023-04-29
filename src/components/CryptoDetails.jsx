@@ -16,7 +16,6 @@ const {Option} = Select
 const CryptoDetails = () => {
   const { coinId } = useParams(); // useParams helps us to use the coinId as parameter
   const [timePeriod, setTimePeriod] = useState('7d') // this is used to distinguished the timeframes for our charts
-  console.log(timePeriod)
   const { data, isFetching } = useGetCryptoDetailsQuery(coinId)
   const { data: coinHistory } = useGetCryptoHistoryQuery({coinId, timePeriod})
   
