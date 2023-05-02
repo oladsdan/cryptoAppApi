@@ -14,7 +14,6 @@ const Exchanges = () => {
   const {coinId} = useParams()
 
   const {data, isFetching} = useGetCryptoExchangesQuery(coinId)
-  console.log(data)
   const exchangeList = data?.data?.exchanges
   
   if(isFetching) return <Loader />
@@ -25,7 +24,7 @@ const Exchanges = () => {
         <Col span={6}>Exchanges</Col>
         <Col span={6}>24h Trade Volume</Col>
         <Col span={6}>Markets</Col>
-        <Col span={6}>Change</Col>
+        <Col span={6}>Price</Col>
       </Row>
       <Row>
         {exchangeList.map((exchange)=> (
@@ -43,7 +42,7 @@ const Exchanges = () => {
                     </Col>
                     <Col span={6}>${millify(exchange["24hVolume"])}</Col>
                     <Col span={6}>{millify(exchange.numberOfMarkets)}</Col>
-                    <Col span={6}>{millify(exchange.uuidPrice)}</Col>
+                    <Col span={6}>{millify(exchange.price)}</Col>
                   </Row>
                 )}
               >
