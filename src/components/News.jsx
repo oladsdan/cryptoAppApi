@@ -5,6 +5,7 @@ import cryptoImage from '../images/cryptocurrency.png'
 
 import { useGetCryptoNewsQuery } from '../services/cryptoNewsApi'
 import { useGetCryptosQuery } from '../services/cryptoApi'
+import Loader from './Loader'
 
 
 const { Text, Title} = Typography
@@ -21,7 +22,7 @@ const News = ({simplified}) => {
 
  
 
- if(!cryptoNews?.value) return 'Loading...';
+ if(!cryptoNews?.value) return  <Loader /> ;
 
   return (
     <Row gutter={[24, 24]}>

@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const cryptoApiHeaders = {
-    'content-type': 'application/octet-stream',
+    // 'content-type': 'application/octet-stream',
     'X-RapidAPI-Key': '7904ddccf4msh1d487968a36450dp12492fjsnb4a82e52fa1c',
     'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com'
 
@@ -24,11 +24,14 @@ export const cryptoApi = createApi({
         }),
         getCryptoHistory : builder.query({
             query: ({ coinId, timePeriod }) => createRequest(`/coin/${coinId}/history/?timePeriod=${timePeriod}`),
+        }),
+        getCryptoExchanges : builder.query({
+            query: (coinId) => createRequest(`/coin/${coinId}/exchanges`),
         })
     })
 });
 
-export const { useGetCryptosQuery, useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } = cryptoApi;
+export const { useGetCryptosQuery, useGetCryptoDetailsQuery, useGetCryptoHistoryQuery, useGetCryptoExchangesQuery } = cryptoApi;
 
 
 // import axios from 'axios';

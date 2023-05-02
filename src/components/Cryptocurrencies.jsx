@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import millify from 'millify';
 import { Link } from 'react-router-dom';
-import { Card, Row, Col, Input} from 'antd'
+import { Card, Row, Col, Input, Button} from 'antd'
 import { useGetCryptosQuery } from '../services/cryptoApi';
+import Loader from './Loader';
 
 const Cryptocurrencies = ({simplified}) => {
   const count = simplified ? 10 : 100; // this is used to shuffle the coins to display only 10 cryptocurrencies so we add it to the useGetCryptoQurey
@@ -21,7 +22,7 @@ const Cryptocurrencies = ({simplified}) => {
 
   },[cryptosList, searchTerm]) // this will execute when both changes
 
-  if(isFetching) return 'Loading...'
+  if(isFetching) return <Loader/>
  
 
   return (
@@ -47,6 +48,9 @@ const Cryptocurrencies = ({simplified}) => {
                 <p>Daily Change: {millify(currency.change)}%</p>
 
               </Card>
+            </Link>
+            <Link to={`/exchanges/${currency.uuid}`}>
+              <Button>List of Exchanges ({currency.name})</Button>
             </Link>
 
           </Col>
